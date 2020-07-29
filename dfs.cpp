@@ -1,3 +1,6 @@
+/*Simple DFS implemetation in C++
+  Without the use of STL library
+  By: Gkountelos Dimitrios*/
 #include <iostream>
 using namespace std; 
   
