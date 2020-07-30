@@ -1,6 +1,6 @@
 /*Simple DFS implemetation in C++
   Without the use of STL library
-  By: Gkountelos Dimitrios*/
+  By: Dimitris Gkountelos*/
 #include <iostream>
 using namespace std; 
   
@@ -19,8 +19,13 @@ class node
             key = newK;
             next = NULL;
         } 
+        ~node();
 };
 
+node::~node() 
+{
+    delete next;
+}
 //the class of the linked list
 class list : node
 {
@@ -28,6 +33,7 @@ class list : node
         node* head;
         list() {head = NULL;}
         void push_back (int nextKey);
+        ~list();
 };
 
 void list::push_back (int nextKey) 
@@ -41,6 +47,11 @@ void list::push_back (int nextKey)
         curr = curr->next;
     }
     curr->next = new class node (nextKey);
+}
+
+list::~list() 
+{
+    delete head;
 }
 
 //the basic class for the graph
@@ -61,6 +72,7 @@ class Graph
         void addEdge(int v, int w); 
         //the first call of the algorithm
         void DFS (int v);
+        ~Graph();
 }; 
   
 Graph::Graph(int V) 
@@ -101,6 +113,11 @@ void Graph::DFSVisit(int v, bool* visited)
         curr = curr->next;
     } 
     while (curr != NULL);
+}
+
+Graph::~Graph() 
+{
+   delete[] adj;
 }
 
 int main() 
